@@ -17,6 +17,21 @@ jobs:
       - name: Set up Docker
         uses: docker/setup-buildx-action@v2
 
+      # init submodules
+      - name: Initialise Submodules
+        uses: snickerbockers/submodules-init@v4
+
+      # Install necessary packages (including 'repo' tool)
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            repo 
+
+      # Build docker image
+      - name: Build Docker
+        run: docker-compose build
+
       # Run the first script
       - name: Run setup-sources.sh
         run: |
