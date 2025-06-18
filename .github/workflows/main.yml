@@ -24,9 +24,10 @@ jobs:
       # Install necessary packages (including 'repo' tool)
       - name: Install dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            repo 
+          mkdir -p ~/bin
+          curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+          chmod a+x ~/bin/repo
+          export PATH=~/bin:$PATH 
 
       # Build docker image
       - name: Build Docker
