@@ -1,0 +1,43 @@
+name: Build and Upload to GitHub Packages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the master branch
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Docker (optional, if your scripts use Docker)
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v2
+
+      # Run the first script
+      - name: Run setup-sources.sh
+        run: |
+          chmod +x ./scripts/setup-sources.sh
+          ./scripts/setup-sources.sh
+
+      # Run the second script
+      - name: Run apply-patches.sh
+        run: |
+          chmod +x ./scripts/apply-patches.sh
+          ./scripts/apply-patches.sh
+
+      # Run the third script
+      - name: Run build.sh
+        run: |
+          chmod +x ./scripts/build.sh
+          ./scripts/build.sh
+
+      # Upload build output to GitHub Packages
+      - name: Upload build output to GitHub Packages
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-output
+          path: build-output
