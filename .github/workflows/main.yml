@@ -11,7 +11,7 @@ jobs:
     steps:
       # Checkout the master branch
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Set up Docker (optional, if your scripts use Docker)
       - name: Set up Docker
@@ -37,7 +37,7 @@ jobs:
 
       # Upload build output to GitHub Packages
       - name: Upload build output to GitHub Packages
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-output
           path: build-output
