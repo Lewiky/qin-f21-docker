@@ -31,7 +31,7 @@ jobs:
 
       # Build docker image
       - name: Build Docker
-        run: docker-compose build
+        run: docker compose build
 
       # Run the first script
       - name: Run setup-sources.sh
