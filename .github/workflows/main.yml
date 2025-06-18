@@ -14,8 +14,8 @@ jobs:
         uses: actions/checkout@v4
 
       # Set up Docker (optional, if your scripts use Docker)
-      - name: Set up Docker
-        uses: docker/setup-buildx-action@v2
+      - name: Set up Docker Compose
+        uses: docker/setup-compose-action@v1
 
       # init submodules
       - name: Initialise Submodules
